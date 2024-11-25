@@ -34,3 +34,34 @@ def preprocess():
     # Display duplicate rows
     # duplicates = data[data.duplicated()]
     # print(duplicates)
+
+    # Define the translation dictionary
+    translation_dict = {
+        'ไตรมาสที่ 1': 'Quarter 1',
+        'ไตรมาสที่ 2': 'Quarter 2',
+        'ไตรมาสที่ 3': 'Quarter 3',
+        'ไตรมาสที่ 4': 'Quarter 4',
+        'ทั่วประเทศ': 'Nationwide',
+        'รวม': 'Total',
+        'การศึกษาอื่นๆ':'Other Education',
+        'ไม่มีการศึกษา': 'No Education',
+        'ไม่ทราบ':'No Data',
+        'ต่ำกว่าประถมศึกษา': 'Below Primary Education',
+        'ประถมศึกษา': 'Primary Education',
+        'มัธยมศึกษาตอนต้น': 'Lower Secondary Education',
+        'มัธยมศึกษาตอนปลาย สายสามัญ': 'Upper Secondary Education - General Track',
+        'มัธยมศึกษาตอนปลาย สายอาชีวศึกษา': 'Upper Secondary Education - Vocational Track',
+        'มัธยมศึกษาตอนปลาย สายวิชาการ': 'Upper Secondary Education - Academic Track',
+        'อุดมศึกษา สายวิชาการ': 'Higher Education - Academic Track',
+        'อุดมศึกษา สายวิชาชีพ': 'Higher Education - Vocational Track',
+        'อุดมศึกษา สายวิชาการศึกษา': 'Higher Education - Teacher Education Track',
+        'ร้อยละ': 'Percentage',
+        'สำนักงานสถิติแห่งชาติ': 'National Statistical Office of Thailand'
+    }
+
+    # Apply the translations to the relevant columns
+    data.replace(translation_dict, inplace=True)
+
+    # Save the filtered data to a new CSV file
+    data_file_path = 'data/processed/Employment Rate by Level of Education Over Time.csv'
+    data.to_csv(data_file_path, index=False)
